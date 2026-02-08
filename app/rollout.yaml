@@ -17,9 +17,9 @@ spec:
         - name: demo-app
           image: hashicorp/http-echo:0.2.3
           args:
-            - "-text=VERSION-1"
+            - "-text=VERSION-Broken"
           ports:
-            - containerPort: 5678
+            - containerPort: 9999
           readinessProbe:
             httpGet:
               path: /
@@ -36,3 +36,4 @@ spec:
         - pause:
             duration: 30s
         - setWeight: 100
+
