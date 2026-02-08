@@ -14,16 +14,19 @@ spec:
         app: demo-app
     spec:
       containers:
-        - name: demo-app
-          image: nginx:1.23
-          ports:
-            - containerPort: 80
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 80
-            initialDelaySeconds: 5
-            periodSeconds: 5
+  - name: demo-app
+    image: hashicorp/http-echo:0.2.3
+    args:
+      - "-text=VERSION-1"
+    ports:
+      - containerPort: 5678
+    readinessProbe:
+      httpGet:
+        path: /
+        port: 5678
+      initialDelaySeconds: 5
+      periodSeconds: 5
+
   strategy:
     canary:
       steps:
@@ -32,3 +35,4 @@ spec:
         - setWeight: 50
         - pause: { duration: 30s }
         - setWeight: 100
+
