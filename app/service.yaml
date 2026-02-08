@@ -8,6 +8,7 @@ spec:
     app: demo-app
   ports:
     - port: 80
-      targetPort: 5678
+      targetPort: 9999
   type: LoadBalancer
+
 
